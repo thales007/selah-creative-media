@@ -35,10 +35,7 @@ export default function Home() {
 
       {/* Hero */}
       <section className="flex flex-col items-center text-center px-8 pt-12 pb-14">
-        <p className="text-xs font-semibold tracking-widest uppercase mb-8" style={{ color: "#f05a1a" }}>
-          Selah Creative Media
-        </p>
-        <h1 className="text-5xl md:text-6xl font-bold leading-tight max-w-3xl" style={{ letterSpacing: "-0.02em" }}>
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl" style={{ letterSpacing: "-0.02em" }}>
           We build digital tools and content that help people do more.
         </h1>
         <p className="mt-8 text-lg max-w-md" style={{ color: "#888", lineHeight: "1.7" }}>
