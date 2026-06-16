@@ -17,7 +17,8 @@ const projects = [
   },
 ];
 
-export default function Home() {
+// B2 — Minimal white, lots of space, centered, clean sans-serif, orange used sparingly
+export default function MockupB2() {
   return (
     <main className="flex flex-col min-h-screen bg-white text-[#1a1a1a]" style={{ fontFamily: "Arial, sans-serif" }}>
 
@@ -33,7 +34,7 @@ export default function Home() {
         </a>
       </nav>
 
-      {/* Hero */}
+      {/* Hero — centered, lots of air */}
       <section className="flex flex-col items-center text-center px-8 pt-12 pb-14">
         <p className="text-xs font-semibold tracking-widest uppercase mb-8" style={{ color: "#f05a1a" }}>
           Selah Creative Media
@@ -53,7 +54,7 @@ export default function Home() {
         </a>
       </section>
 
-      {/* What We Do */}
+      {/* What We Do — horizontal rule list */}
       <section className="px-10 pt-6 pb-16 max-w-4xl mx-auto w-full">
         <div className="flex flex-col">
           {[
@@ -64,7 +65,7 @@ export default function Home() {
             <div
               key={item.title}
               className="flex flex-col md:flex-row md:items-center justify-between py-7"
-              style={{ borderTop: "1px solid #e5e5e5", borderBottom: i === 2 ? "1px solid #e5e5e5" : "none" }}
+              style={{ borderTop: i === 0 ? "1px solid #e5e5e5" : "1px solid #e5e5e5", borderBottom: i === 2 ? "1px solid #e5e5e5" : "none" }}
             >
               <h3 className="text-lg font-semibold w-48 flex-shrink-0">{item.title}</h3>
               <p className="mt-2 md:mt-0 text-sm leading-relaxed" style={{ color: "#888", maxWidth: "480px" }}>{item.desc}</p>
@@ -114,7 +115,7 @@ export default function Home() {
         <p className="mb-8" style={{ color: "#888" }}>Have a question or want to work together?</p>
         <a
           href="mailto:timothyehales@gmail.com"
-          className="inline-block font-semibold px-10 py-4 rounded-full transition-colors hover:bg-[#d44e15]"
+          className="inline-block font-semibold px-10 py-4 rounded-full transition-colors"
           style={{ background: "#f05a1a", color: "white", fontSize: "15px" }}
         >
           Send a Message
