@@ -7,6 +7,7 @@ const projects = [
     domain: "solescore.app",
     description: "A shoe resell profit analyzer that helps resellers know their numbers before they buy.",
     tag: "Digital Product",
+    image: "/solescore.png",
   },
   {
     name: "ResellingShoes.com",
@@ -14,6 +15,7 @@ const projects = [
     domain: "resellingshoes.com",
     description: "A content hub with guides, tips, and resources for shoe resellers at every level.",
     tag: "Content",
+    image: "/resellingshoes.png",
   },
 ];
 
@@ -81,16 +83,26 @@ export default function Home() {
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-2xl p-8 transition-all"
+                className="group block rounded-2xl overflow-hidden transition-all"
                 style={{ background: "white", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}
               >
-                <div className="flex items-center justify-between mb-5">
-                  <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#bbb" }}>{project.tag}</span>
-                  <span className="text-lg group-hover:text-[#f05a1a] transition-colors" style={{ color: "#ccc" }}>↗</span>
+                <div className="relative w-full" style={{ aspectRatio: "2000 / 880" }}>
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} screenshot`}
+                    fill
+                    className="object-cover object-top"
+                  />
                 </div>
-                <h3 className="text-xl font-bold mb-3 group-hover:text-[#f05a1a] transition-colors">{project.name}</h3>
-                <p className="text-sm leading-relaxed" style={{ color: "#888" }}>{project.description}</p>
-                <p className="mt-5 text-xs font-semibold" style={{ color: "#f05a1a" }}>{project.domain}</p>
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#bbb" }}>{project.tag}</span>
+                    <span className="text-lg group-hover:text-[#f05a1a] transition-colors" style={{ color: "#ccc" }}>↗</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-[#f05a1a] transition-colors">{project.name}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#888" }}>{project.description}</p>
+                  <p className="mt-5 text-xs font-semibold" style={{ color: "#f05a1a" }}>{project.domain}</p>
+                </div>
               </a>
             ))}
           </div>
