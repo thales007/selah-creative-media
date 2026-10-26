@@ -1,27 +1,20 @@
 import Image from "next/image";
 
-const projects = [
+// Web content leads; publishing is second.
+const sites = [
   {
-    name: "SoleScore",
-    url: "https://solescore.app",
-    domain: "solescore.app",
-    description: "A shoe resell profit analyzer that helps resellers know their numbers before they buy.",
-    tag: "Digital Product",
-    image: "/solescore.png",
+    name: "SteelBlue Kitchen",
+    url: "https://steelbluekitchen.com",
+    domain: "steelbluekitchen.com",
+    description: "Honest reviews of kitchen knives and cooking gear, tested in a real kitchen.",
   },
   {
     name: "ResellingShoes.com",
     url: "https://resellingshoes.com",
     domain: "resellingshoes.com",
-    description: "A content hub with guides, tips, and resources for shoe resellers at every level.",
-    tag: "Content",
-    image: "/resellingshoes.png",
+    description: "Guides, strategies, and resources for everyday shoe resellers sourcing from thrift stores and yard sales.",
   },
 ];
-
-// TODO: replace [BOOKS_EMAIL] with the books contact address. Used in the
-// footer and the Get in Touch button. No personal Gmail on this page.
-const BOOKS_EMAIL = "[BOOKS_EMAIL]";
 
 const books = [
   {
@@ -29,95 +22,89 @@ const books = [
     author: "By Timothy Hales",
     description: "An A-to-Z book that introduces kids to maps, data, and the technology that connects them.",
     cover: "/covers/abcs-of-gis.jpg",
-    // Change to https://timothyhales.com/books/abcs-of-gis once that page is live.
+    // TODO: change to https://timothyhales.com/books/abcs-of-gis once that page is live.
     url: "https://timothyhales.com/books",
   },
 ];
+
+// TODO: replace [BOOKS_EMAIL] with the contact address. No personal Gmail on this page.
+const BOOKS_EMAIL = "[BOOKS_EMAIL]";
+
+const label = "text-xs font-semibold tracking-widest uppercase mb-10";
+const card = "group block rounded-2xl p-8 transition-all";
+const cardStyle = { background: "white", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: "1px solid #f0f0f0" };
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen bg-white text-[#1a1a1a]" style={{ fontFamily: "Arial, sans-serif" }}>
 
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-10 py-6">
+      {/* Header */}
+      <header className="flex items-center px-6 md:px-10 py-6">
         <Image src="/logo.png" alt="Selah Creative Media" width={190} height={46} priority />
-        <a
-          href="#contact"
-          className="text-sm font-medium px-5 py-2 rounded-full transition-colors hover:bg-[#1a1a1a] hover:text-white"
-          style={{ border: "1.5px solid #1a1a1a", color: "#1a1a1a" }}
-        >
-          Contact
-        </a>
-      </nav>
+      </header>
 
       {/* Hero */}
-      <section className="flex flex-col items-center text-center px-8 pt-12 pb-14">
+      <section className="flex flex-col items-center text-center px-6 md:px-8 pt-12 pb-16">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl" style={{ letterSpacing: "-0.02em" }}>
-          We build digital tools and content that help people do more.
+          Content for the web. Books for young readers.
         </h1>
-        <p className="mt-8 text-lg max-w-md" style={{ color: "#888", lineHeight: "1.7" }}>
-          A small company making practical things for real people.
+        <p className="mt-8 text-lg max-w-xl" style={{ color: "#888", lineHeight: "1.7" }}>
+          Selah Creative Media is a small company that creates websites and content, and publishes children&apos;s books.
         </p>
-        <a
-          href="#work"
-          className="mt-6 text-sm font-semibold"
-          style={{ color: "#f05a1a", letterSpacing: "0.05em" }}
-        >
-          See our work ↓
-        </a>
       </section>
 
-      {/* What We Do */}
-      <section className="px-10 pt-6 pb-16 max-w-4xl mx-auto w-full">
-        <div className="flex flex-col">
-          {[
-            { title: "Digital Products", desc: "Web apps and tools built around real workflows and real needs." },
-            { title: "Content", desc: "Resources, guides, and media that inform, educate, and convert." },
-            { title: "Publishing", desc: "Books that help young readers discover technology and the world around them." },
-            { title: "Web Management", desc: "We help select organizations keep their websites running and up to date." },
-          ].map((item, i) => (
-            <div
-              key={item.title}
-              className="flex flex-col md:flex-row md:items-center justify-between py-7"
-              style={{ borderTop: "1px solid #e5e5e5", borderBottom: i === 3 ? "1px solid #e5e5e5" : "none" }}
-            >
-              <h3 className="text-lg font-semibold w-48 flex-shrink-0">{item.title}</h3>
-              <p className="mt-2 md:mt-0 text-sm leading-relaxed" style={{ color: "#888", maxWidth: "480px" }}>{item.desc}</p>
-            </div>
-          ))}
+      {/* Content */}
+      <section id="content" className="px-6 md:px-10 py-16" style={{ background: "#f9f9f9" }}>
+        <div className="max-w-4xl mx-auto">
+          <h2 className={label} style={{ color: "#f05a1a" }}>Content</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {sites.map((site) => (
+              <a
+                key={site.name}
+                href={site.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={card}
+                style={cardStyle}
+              >
+                <div className="flex items-start justify-between gap-4 mb-3">
+                  <h3 className="text-xl font-bold group-hover:text-[#f05a1a] transition-colors">{site.name}</h3>
+                  <span className="text-lg group-hover:text-[#f05a1a] transition-colors" style={{ color: "#ccc" }}>↗</span>
+                </div>
+                <p className="text-sm leading-relaxed" style={{ color: "#888" }}>{site.description}</p>
+                <p className="mt-5 text-xs font-semibold" style={{ color: "#f05a1a" }}>{site.domain}</p>
+              </a>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* Our Work */}
-      <section id="work" className="px-10 py-16" style={{ background: "#f9f9f9" }}>
+      {/* Publishing */}
+      <section id="publishing" className="px-6 md:px-10 py-16">
         <div className="max-w-4xl mx-auto">
-          <p className="text-xs font-semibold tracking-widest uppercase mb-12" style={{ color: "#f05a1a" }}>Our Work</p>
+          <h2 className={label} style={{ color: "#f05a1a" }}>Publishing</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {projects.map((project) => (
+            {books.map((book) => (
               <a
-                key={project.name}
-                href={project.url}
+                key={book.title}
+                href={book.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group block rounded-2xl overflow-hidden transition-all"
-                style={{ background: "white", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}
+                className="group flex gap-5 items-center rounded-2xl p-6 transition-all"
+                style={cardStyle}
               >
-                <div className="relative w-full" style={{ aspectRatio: "2000 / 880" }}>
-                  <Image
-                    src={project.image}
-                    alt={`${project.name} screenshot`}
-                    fill
-                    className="object-cover object-top"
-                  />
-                </div>
-                <div className="p-8">
-                  <div className="flex items-center justify-between mb-5">
-                    <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#bbb" }}>{project.tag}</span>
-                    <span className="text-lg group-hover:text-[#f05a1a] transition-colors" style={{ color: "#ccc" }}>↗</span>
-                  </div>
-                  <h3 className="text-xl font-bold mb-3 group-hover:text-[#f05a1a] transition-colors">{project.name}</h3>
-                  <p className="text-sm leading-relaxed" style={{ color: "#888" }}>{project.description}</p>
-                  <p className="mt-5 text-xs font-semibold" style={{ color: "#f05a1a" }}>{project.domain}</p>
+                <Image
+                  src={book.cover}
+                  alt={`${book.title} by Timothy Hales`}
+                  width={80}
+                  height={80}
+                  className="flex-shrink-0 w-20 h-20 rounded-lg object-cover"
+                  style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.12)" }}
+                />
+                <div>
+                  <h3 className="text-xl font-bold group-hover:text-[#f05a1a] transition-colors">{book.title}</h3>
+                  <p className="text-sm" style={{ color: "#888" }}>{book.author}</p>
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "#888" }}>{book.description}</p>
                 </div>
               </a>
             ))}
@@ -125,63 +112,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Books */}
-      <section id="books" className="px-10 py-16 max-w-4xl mx-auto w-full">
-        <p className="text-xs font-semibold tracking-widest uppercase mb-12" style={{ color: "#f05a1a" }}>Books</p>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {books.map((book) => (
-            <a
-              key={book.title}
-              href={book.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex gap-6 items-center rounded-2xl p-6 transition-all"
-              style={{ background: "white", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: "1px solid #f0f0f0" }}
-            >
-              <Image
-                src={book.cover}
-                alt={`${book.title} by Timothy Hales`}
-                width={112}
-                height={112}
-                className="flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-lg object-cover"
-                style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.12)" }}
-              />
-              <div>
-                <h3 className="text-xl font-bold mb-1 group-hover:text-[#f05a1a] transition-colors">{book.title}</h3>
-                <p className="text-sm" style={{ color: "#888" }}>{book.author}</p>
-                <p className="mt-3 text-sm leading-relaxed" style={{ color: "#888" }}>{book.description}</p>
-              </div>
-            </a>
-          ))}
-        </div>
-        <p className="mt-8 text-sm leading-relaxed" style={{ color: "#888" }}>
-          Selah Creative Media LLC publishes children&apos;s books and creates content for the web. More titles are on the way.
-        </p>
-      </section>
-
       {/* About */}
-      <section className="px-10 py-20 max-w-2xl mx-auto text-center">
-        <p className="text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: "#f05a1a" }}>About</p>
+      <section className="px-6 md:px-10 py-16 max-w-2xl mx-auto text-center" style={{ borderTop: "1px solid #f0f0f0" }}>
+        <h2 className="text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: "#f05a1a" }}>About</h2>
         <p className="text-lg leading-relaxed" style={{ color: "#555" }}>
-          Selah Creative Media is a small company focused on building useful things. We create digital tools, develop content, publish books, and occasionally help organizations manage their web presence. Good tools should be simple, practical, and built for the people who actually use them.
+          Selah Creative Media LLC creates content for the web, publishes children&apos;s books, and manages websites for select clients. More titles are on the way.
         </p>
-      </section>
-
-      {/* Contact */}
-      <section id="contact" className="px-10 py-20 text-center" style={{ borderTop: "1px solid #e5e5e5" }}>
-        <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
-        <p className="mb-8" style={{ color: "#888" }}>Have a question or want to work together?</p>
-        <a
-          href={`mailto:${BOOKS_EMAIL}`}
-          className="inline-block font-semibold px-10 py-4 rounded-full transition-colors hover:bg-[#d44e15]"
-          style={{ background: "#f05a1a", color: "white", fontSize: "15px" }}
-        >
-          Send a Message
-        </a>
       </section>
 
       {/* Footer */}
-      <footer className="px-10 py-6 text-sm text-center" style={{ color: "#bbb", borderTop: "1px solid #f0f0f0" }}>
+      <footer className="mt-auto px-6 md:px-10 py-6 text-sm text-center" style={{ color: "#bbb", borderTop: "1px solid #f0f0f0" }}>
         <p>© {new Date().getFullYear()} Selah Creative Media LLC</p>
         <p className="mt-1">
           Contact: <a href={`mailto:${BOOKS_EMAIL}`} style={{ color: "#888" }}>{BOOKS_EMAIL}</a>
