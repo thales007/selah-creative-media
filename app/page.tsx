@@ -1,65 +1,193 @@
 import Image from "next/image";
 
-const EMAIL = "timothyehales@gmail.com";
-
-// Each book links to timothyhales.com/books (the permanent books URL).
-// cover: path under /public once the cover exists, e.g. "/covers/abcs-of-gis.jpg".
-const books = [
+const projects = [
   {
-    title: "ABCs of GIS",
-    author: "Timothy Hales",
-    cover: "[COVER_IMAGE]",
-    color: "#3A3A3A",
+    name: "SoleScore",
+    url: "https://solescore.app",
+    domain: "solescore.app",
+    description: "A shoe resell profit analyzer that helps resellers know their numbers before they buy.",
+    tag: "Digital Product",
+    image: "/solescore.png",
+  },
+  {
+    name: "ResellingShoes.com",
+    url: "https://resellingshoes.com",
+    domain: "resellingshoes.com",
+    description: "A content hub with guides, tips, and resources for shoe resellers at every level.",
+    tag: "Content",
+    image: "/resellingshoes.png",
   },
 ];
 
-const isTodo = (v: string) => v.startsWith("[");
+// TODO: replace [BOOKS_EMAIL] with the books contact address. Used in the
+// footer and the Get in Touch button. No personal Gmail on this page.
+const BOOKS_EMAIL = "[BOOKS_EMAIL]";
+
+const books = [
+  {
+    title: "ABCs of GIS",
+    author: "By Timothy Hales",
+    description: "An A-to-Z book that introduces kids to maps, data, and the technology that connects them.",
+    cover: "/covers/abcs-of-gis.jpg",
+    // Change to https://timothyhales.com/books/abcs-of-gis once that page is live.
+    url: "https://timothyhales.com/books",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="wrap">
-      <header className="head">
-        <Image src="/logo.png" alt="Selah Creative Media" width={210} height={50} priority />
-      </header>
+    <main className="flex flex-col min-h-screen bg-white text-[#1a1a1a]" style={{ fontFamily: "Arial, sans-serif" }}>
 
-      <main>
-        <section className="intro">
-          <h1>An independent imprint publishing books that help young readers discover the world.</h1>
-        </section>
+      {/* Nav */}
+      <nav className="flex items-center justify-between px-10 py-6">
+        <Image src="/logo.png" alt="Selah Creative Media" width={190} height={46} priority />
+        <a
+          href="#contact"
+          className="text-sm font-medium px-5 py-2 rounded-full transition-colors hover:bg-[#1a1a1a] hover:text-white"
+          style={{ border: "1.5px solid #1a1a1a", color: "#1a1a1a" }}
+        >
+          Contact
+        </a>
+      </nav>
 
-        <section aria-labelledby="books-label">
-          <p className="label" id="books-label">Books</p>
-          <div className="books">
-            {books.map((b) => (
-              <a key={b.title} href="https://timothyhales.com/books" className="book">
-                <div className="book__cover" style={{ background: b.color }}>
-                  {isTodo(b.cover) ? (
-                    <>
-                      <span className="book__cover-title">{b.title}</span>
-                      <span className="todo">{b.cover}</span>
-                    </>
-                  ) : (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img src={b.cover} alt={`${b.title} cover`} />
-                  )}
+      {/* Hero */}
+      <section className="flex flex-col items-center text-center px-8 pt-12 pb-14">
+        <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl" style={{ letterSpacing: "-0.02em" }}>
+          We build digital tools and content that help people do more.
+        </h1>
+        <p className="mt-8 text-lg max-w-md" style={{ color: "#888", lineHeight: "1.7" }}>
+          A small company making practical things for real people.
+        </p>
+        <a
+          href="#work"
+          className="mt-6 text-sm font-semibold"
+          style={{ color: "#f05a1a", letterSpacing: "0.05em" }}
+        >
+          See our work ↓
+        </a>
+      </section>
+
+      {/* What We Do */}
+      <section className="px-10 pt-6 pb-16 max-w-4xl mx-auto w-full">
+        <div className="flex flex-col">
+          {[
+            { title: "Digital Products", desc: "Web apps and tools built around real workflows and real needs." },
+            { title: "Content", desc: "Resources, guides, and media that inform, educate, and convert." },
+            { title: "Publishing", desc: "Books that help young readers discover technology and the world around them." },
+            { title: "Web Management", desc: "We help select organizations keep their websites running and up to date." },
+          ].map((item, i) => (
+            <div
+              key={item.title}
+              className="flex flex-col md:flex-row md:items-center justify-between py-7"
+              style={{ borderTop: "1px solid #e5e5e5", borderBottom: i === 3 ? "1px solid #e5e5e5" : "none" }}
+            >
+              <h3 className="text-lg font-semibold w-48 flex-shrink-0">{item.title}</h3>
+              <p className="mt-2 md:mt-0 text-sm leading-relaxed" style={{ color: "#888", maxWidth: "480px" }}>{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Our Work */}
+      <section id="work" className="px-10 py-16" style={{ background: "#f9f9f9" }}>
+        <div className="max-w-4xl mx-auto">
+          <p className="text-xs font-semibold tracking-widest uppercase mb-12" style={{ color: "#f05a1a" }}>Our Work</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            {projects.map((project) => (
+              <a
+                key={project.name}
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-2xl overflow-hidden transition-all"
+                style={{ background: "white", boxShadow: "0 1px 4px rgba(0,0,0,0.06)" }}
+              >
+                <div className="relative w-full" style={{ aspectRatio: "2000 / 880" }}>
+                  <Image
+                    src={project.image}
+                    alt={`${project.name} screenshot`}
+                    fill
+                    className="object-cover object-top"
+                  />
                 </div>
-                <p className="book__title">{b.title}</p>
-                <p className="book__by">{b.author}</p>
+                <div className="p-8">
+                  <div className="flex items-center justify-between mb-5">
+                    <span className="text-xs font-semibold tracking-widest uppercase" style={{ color: "#bbb" }}>{project.tag}</span>
+                    <span className="text-lg group-hover:text-[#f05a1a] transition-colors" style={{ color: "#ccc" }}>↗</span>
+                  </div>
+                  <h3 className="text-xl font-bold mb-3 group-hover:text-[#f05a1a] transition-colors">{project.name}</h3>
+                  <p className="text-sm leading-relaxed" style={{ color: "#888" }}>{project.description}</p>
+                  <p className="mt-5 text-xs font-semibold" style={{ color: "#f05a1a" }}>{project.domain}</p>
+                </div>
               </a>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-        <section className="order">
-          <h2>Libraries and booksellers</h2>
-          <p>
-            For library, bookstore, or classroom orders, email{" "}
-            <a href={`mailto:${EMAIL}`}>{EMAIL}</a>.
-          </p>
-        </section>
-      </main>
+      {/* Books */}
+      <section id="books" className="px-10 py-16 max-w-4xl mx-auto w-full">
+        <p className="text-xs font-semibold tracking-widest uppercase mb-12" style={{ color: "#f05a1a" }}>Books</p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {books.map((book) => (
+            <a
+              key={book.title}
+              href={book.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex gap-6 items-center rounded-2xl p-6 transition-all"
+              style={{ background: "white", boxShadow: "0 1px 4px rgba(0,0,0,0.06)", border: "1px solid #f0f0f0" }}
+            >
+              <Image
+                src={book.cover}
+                alt={`${book.title} by Timothy Hales`}
+                width={112}
+                height={112}
+                className="flex-shrink-0 w-24 h-24 sm:w-28 sm:h-28 rounded-lg object-cover"
+                style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.12)" }}
+              />
+              <div>
+                <h3 className="text-xl font-bold mb-1 group-hover:text-[#f05a1a] transition-colors">{book.title}</h3>
+                <p className="text-sm" style={{ color: "#888" }}>{book.author}</p>
+                <p className="mt-3 text-sm leading-relaxed" style={{ color: "#888" }}>{book.description}</p>
+              </div>
+            </a>
+          ))}
+        </div>
+        <p className="mt-8 text-sm leading-relaxed" style={{ color: "#888" }}>
+          Selah Creative Media LLC publishes children&apos;s books and creates content for the web. More titles are on the way.
+        </p>
+      </section>
 
-      <footer className="foot">© {new Date().getFullYear()} Selah Creative Media LLC</footer>
-    </div>
+      {/* About */}
+      <section className="px-10 py-20 max-w-2xl mx-auto text-center">
+        <p className="text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: "#f05a1a" }}>About</p>
+        <p className="text-lg leading-relaxed" style={{ color: "#555" }}>
+          Selah Creative Media is a small company focused on building useful things. We create digital tools, develop content, publish books, and occasionally help organizations manage their web presence. Good tools should be simple, practical, and built for the people who actually use them.
+        </p>
+      </section>
+
+      {/* Contact */}
+      <section id="contact" className="px-10 py-20 text-center" style={{ borderTop: "1px solid #e5e5e5" }}>
+        <h2 className="text-4xl font-bold mb-4">Get in Touch</h2>
+        <p className="mb-8" style={{ color: "#888" }}>Have a question or want to work together?</p>
+        <a
+          href={`mailto:${BOOKS_EMAIL}`}
+          className="inline-block font-semibold px-10 py-4 rounded-full transition-colors hover:bg-[#d44e15]"
+          style={{ background: "#f05a1a", color: "white", fontSize: "15px" }}
+        >
+          Send a Message
+        </a>
+      </section>
+
+      {/* Footer */}
+      <footer className="px-10 py-6 text-sm text-center" style={{ color: "#bbb", borderTop: "1px solid #f0f0f0" }}>
+        <p>© {new Date().getFullYear()} Selah Creative Media LLC</p>
+        <p className="mt-1">
+          Contact: <a href={`mailto:${BOOKS_EMAIL}`} style={{ color: "#888" }}>{BOOKS_EMAIL}</a>
+        </p>
+      </footer>
+
+    </main>
   );
 }
