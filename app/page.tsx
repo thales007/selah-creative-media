@@ -93,14 +93,15 @@ export default function Home() {
                 className="group flex gap-5 items-center rounded-2xl p-6 transition-all"
                 style={cardStyle}
               >
-                <Image
-                  src={book.cover}
-                  alt={`${book.title} by Timothy Hales`}
-                  width={80}
-                  height={80}
-                  className="flex-shrink-0 w-20 h-20 rounded-lg object-cover"
-                  style={{ boxShadow: "0 1px 4px rgba(0,0,0,0.12)" }}
-                />
+                <div className="book flex-shrink-0">
+                  <Image
+                    src={book.cover}
+                    alt={`${book.title} by Timothy Hales`}
+                    width={80}
+                    height={80}
+                    className="block w-20 h-20 object-cover"
+                  />
+                </div>
                 <div>
                   <h3 className="text-xl font-bold group-hover:text-[#f05a1a] transition-colors">{book.title}</h3>
                   <p className="text-sm" style={{ color: "#888" }}>{book.author}</p>
