@@ -1,6 +1,5 @@
 import Image from "next/image";
 
-// Web content leads; publishing is second.
 const sites = [
   {
     name: "SteelBlue Kitchen",
@@ -15,20 +14,6 @@ const sites = [
     description: "Guides, strategies, and resources for everyday shoe resellers sourcing from thrift stores and yard sales.",
   },
 ];
-
-const books = [
-  {
-    title: "ABCs of GIS",
-    author: "By Timothy Hales",
-    description: "An A-to-Z book that introduces kids to maps, data, and the technology that connects them.",
-    cover: "/covers/abcs-of-gis.jpg",
-    // TODO: change to https://timothyhales.com/books/abcs-of-gis once that page is live.
-    url: "https://timothyhales.com/books",
-  },
-];
-
-// TODO: replace [BOOKS_EMAIL] with the contact address. No personal Gmail on this page.
-const BOOKS_EMAIL = "[BOOKS_EMAIL]";
 
 const label = "text-xs font-semibold tracking-widest uppercase mb-10";
 const card = "group block rounded-2xl p-8 transition-all";
@@ -46,10 +31,10 @@ export default function Home() {
       {/* Hero */}
       <section className="flex flex-col items-center text-center px-6 md:px-8 pt-12 pb-16">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-3xl" style={{ letterSpacing: "-0.02em" }}>
-          Content for the web. Books for young readers.
+          Websites and content for the web.
         </h1>
         <p className="mt-8 text-lg max-w-xl" style={{ color: "#888", lineHeight: "1.7" }}>
-          Selah Creative Media is a small company that creates websites and content, and publishes children&apos;s books.
+          Selah Creative Media is a small company that creates websites and content.
         </p>
       </section>
 
@@ -79,54 +64,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Publishing */}
-      <section id="publishing" className="px-6 md:px-10 py-16">
-        <div className="max-w-4xl mx-auto">
-          <h2 className={label} style={{ color: "#f05a1a" }}>Publishing</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {books.map((book) => (
-              <a
-                key={book.title}
-                href={book.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex gap-5 items-center rounded-2xl p-6 transition-all"
-                style={cardStyle}
-              >
-                <div className="book flex-shrink-0">
-                  <Image
-                    src={book.cover}
-                    alt={`${book.title} by Timothy Hales`}
-                    width={80}
-                    height={80}
-                    className="block w-20 h-20 object-cover"
-                  />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold group-hover:text-[#f05a1a] transition-colors">{book.title}</h3>
-                  <p className="text-sm" style={{ color: "#888" }}>{book.author}</p>
-                  <p className="mt-2 text-sm leading-relaxed" style={{ color: "#888" }}>{book.description}</p>
-                </div>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* About */}
       <section className="px-6 md:px-10 py-16 max-w-2xl mx-auto text-center" style={{ borderTop: "1px solid #f0f0f0" }}>
         <h2 className="text-xs font-semibold tracking-widest uppercase mb-6" style={{ color: "#f05a1a" }}>About</h2>
         <p className="text-lg leading-relaxed" style={{ color: "#555" }}>
-          Selah Creative Media LLC creates content for the web, publishes children&apos;s books, and manages websites for select clients. More titles are on the way.
+          Selah Creative Media LLC creates content for the web and manages websites for select clients.
         </p>
       </section>
 
       {/* Footer */}
       <footer className="mt-auto px-6 md:px-10 py-6 text-sm text-center" style={{ color: "#bbb", borderTop: "1px solid #f0f0f0" }}>
         <p>© {new Date().getFullYear()} Selah Creative Media LLC</p>
-        <p className="mt-1">
-          Contact: <a href={`mailto:${BOOKS_EMAIL}`} style={{ color: "#888" }}>{BOOKS_EMAIL}</a>
-        </p>
       </footer>
 
     </main>

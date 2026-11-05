@@ -9,7 +9,7 @@ const geistSans = Geist({
 });
 
 const DESCRIPTION =
-  "Selah Creative Media creates content for the web and publishes children's books, including ABCs of GIS by Timothy Hales.";
+  "Selah Creative Media creates websites and content for the web.";
 
 export const metadata: Metadata = {
   title: "Selah Creative Media",
